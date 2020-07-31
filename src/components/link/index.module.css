@@ -1,0 +1,21 @@
+.header-link {
+    color: white;
+    text-decoration: none;
+}
+
+.header-list-item {
+    display: inline-block;
+    height: auto;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+.header-list-item:not(:first-child) {
+    padding: 15px;
+}
+
+.header-list-item:hover {
+    border-top: none;
+    font-weight: bold;
+    background-color: #383838;
+}
