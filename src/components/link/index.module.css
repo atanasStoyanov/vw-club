@@ -5,7 +5,7 @@
 
 .header-list-item {
     display: inline-block;
-    height: auto;
+    height: 40px;
     cursor: pointer;
     vertical-align: top;
 }
