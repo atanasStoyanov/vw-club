@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import RegisterPage from './pages/register';
 import HomePage from './pages/home';
+import LoginPage from './pages/login';
 
 const Navigation = () => {
     return (
@@ -13,6 +14,7 @@ const Navigation = () => {
             <Switch>
                 <Route path='/' exact component={HomePage}/>
                 <Route path='/register' component={RegisterPage}/>
+                <Route path='/login' component={LoginPage}/>
             </Switch>
         </BrowserRouter>
     )
