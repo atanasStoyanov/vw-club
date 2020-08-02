@@ -4,6 +4,7 @@ import PageLayout from '../../components/page-layout';
 import Title from '../../components/title';
 import Input from '../../components/input';
 import SubmitButton from '../../components/button/submit-button';
+import authenticate from '../../utils/authenticate';
 
 
 class RegisterPage extends Component {
@@ -17,12 +18,31 @@ class RegisterPage extends Component {
         }
     }
 
-    handleChange(event, type) {
+    handleChange = (event, type) => {
         const newState = {};
         newState[type] = event.target.value;
 
         this.setState(newState);
 
+    }
+
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        const {
+            username,
+            password
+        } = this.state
+
+        await authenticate('http://localhost:9999/api/user/register', 
+        {
+            username,
+            password
+        },
+        () => {
+           console.log('Successfull registration');
+            this.props.history.push('/');
+        },
+        (e) => console.log('Error: ', e));
     }
 
 
@@ -36,8 +56,8 @@ class RegisterPage extends Component {
         return (
             <PageLayout>
                 <div className={styles.container}>
-                    <form className={styles.form}>
-                    <Title title='REGISTER' />
+                    <form className={styles.form} onSubmit={this.handleSubmit}>
+                        <Title title='REGISTER' />
                         <Input
                             value={username}
                             onChange={(e) => this.handleChange(e, 'username')}
@@ -61,7 +81,7 @@ class RegisterPage extends Component {
                             id='re-password'
                             placeholder='******'
                         />
-                        <SubmitButton title='Register'/>
+                        <SubmitButton title='Register' />
                     </form>
                 </div>
             </PageLayout>
