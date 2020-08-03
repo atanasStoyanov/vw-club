@@ -2,20 +2,24 @@ const getNavigation = (loggedIn, user) => {
 
     const authLinks = [
         {
-            title: 'Create Post',
-            link: '/create-post'
+            title: 'Home',
+            link: '/'
         },
         {
-            title: 'Create Event',
-            link: '/create-event'
+            title: 'Forum',
+            link: '/forum'
         },
         {
-            title: 'Logout',
-            link: '/logout'
+            title: 'Events',
+            link: '/events'
         },
         {
             title: 'Profile',
             link: `/profile/${user && user.id}`
+        },
+        {
+            title: 'Logout',
+            link: '/'
         }
     ]
 

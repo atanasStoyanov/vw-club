@@ -9,7 +9,7 @@ const authenticate = async (url, body, onSuccess, onFailure) => {
         });
 
         const authToken = promise.headers.get('Authorization');
-        document.cookie = `x-auth-toke=${authToken}`;
+        document.cookie = `x-auth-token=${authToken}`;
 
         const response = await promise.json();
 
