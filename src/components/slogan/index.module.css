@@ -1,0 +1,15 @@
+.slogan {
+    text-align: right;
+    
+}
+
+.logo {
+    width: 40px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.slogan-element {
+    display: inline-block;
+    vertical-align: middle;
+}
