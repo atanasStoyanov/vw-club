@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import {
     BrowserRouter,
     Switch,
@@ -9,26 +9,32 @@ import RegisterPage from './pages/register';
 import HomePage from './pages/home';
 import LoginPage from './pages/login';
 import UserContext from './Context';
+import ForumPage from './pages/forum';
 
-class Navigation extends Component {
+const Navigation = () => {
 
-    static contextType = UserContext;
+    const context = useContext(UserContext);
 
-    render() {
-        const {
-            loggedIn
-        } = this.context;
+    const {
+        loggedIn
+    } = context;
 
-        return (
-            <BrowserRouter>
-                <Switch>
-                    <Route path='/' exact component={HomePage} />
-                    {!loggedIn ? <Route path='/register' component={RegisterPage} /> : <Redirect to='/'/>}
-                    {!loggedIn ? <Route path='/login' component={LoginPage} /> : <Redirect to='/' />}
-                </Switch>
-            </BrowserRouter>
-        )
-    }
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route path='/' exact component={HomePage} />
+                <Route path='/forum'>
+                    {loggedIn ? (<ForumPage />) : (<Redirect to='/login' />)}
+                </Route>
+                <Route path='/register'>
+                    {!loggedIn ? (<RegisterPage />) : (<Redirect to='/' />)}
+                </Route>
+                <Route path='/login'>
+                    {!loggedIn ? (<LoginPage />) : (<Redirect to='/' />)}
+                </Route>
+            </Switch>
+        </BrowserRouter>
+    )
 }
 
 export default Navigation;
