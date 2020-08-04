@@ -37,7 +37,7 @@ const Header = () => {
                     }
 
                     return (
-                        <Link key={navElement.title} href={navElement.link} title={navElement.title} />
+                        <Link key={navElement.title} href={navElement.link} title={navElement.title} onClick={() =>{}} />
                     )
                 })
             }
