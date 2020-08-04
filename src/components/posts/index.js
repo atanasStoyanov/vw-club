@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './index.module.css';
-import SubmitButton from '../button/submit-button';
+import LinkButton from '../button/link-button';
+
 
 class Posts extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class Posts extends Component {
             <section className={styles.container}>
                 <h1>Forum Posts</h1>
                 <div className={styles['posts-container']}>
-                    <SubmitButton title='Create Post' />
+                    <LinkButton href='/forum/create-post'/>
                 </div>
             </section>
         )
