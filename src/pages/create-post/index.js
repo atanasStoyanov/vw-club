@@ -5,20 +5,66 @@ import Title from '../../components/title';
 import Input from '../../components/input';
 import Textarea from '../../components/textarea';
 import { useHistory } from 'react-router-dom';
-import SubmitButton from '../../components/button/submit-button'
+import SubmitButton from '../../components/button/submit-button';
+import getCookie from '../../utils/getCookie';
 
 const CreatePostPage = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [model, setModel] = useState('');
+    const [loading, setLoading] = useState(false);
     const [image, setImage] = useState('');
 
     const history = useHistory();
 
+    const uploadImage = async (e) => {
+        const files = e.target.files;
+
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'VWimages');
+
+        setLoading(true);
+
+        const res = await fetch('https://api.cloudinary.com/v1_1/dbnasko/image/upload', {
+            method: 'POST',
+            body: data
+        });
+
+        const file = await res.json();
+
+        setImage(file.secure_url);
+        setLoading(false);
+
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        await fetch('http://localhost:9999/api/publication',{
+            method: 'POST',
+            body: JSON.stringify({
+                title,
+                carModel: model,
+                description,
+                image
+            }),
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization' : getCookie('x-auth-token')
+            }
+        }).then(res => {
+            history.push('/forum');
+        }).catch(e => {
+            console.log('Error: ', e);
+        })
+
+    }
+
     return (
         <PageLayout>
-            <div className={styles.container}> 
-                <form className={styles.form}>
+            <div className={styles.container}>
+                <form className={styles.form} onSubmit={handleSubmit}>
                     <Title title='Create Post' />
                     <Input
                         value={title}
@@ -42,12 +88,15 @@ const CreatePostPage = () => {
                         placeholder='Describe your post...'
                     />
                     <Input
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
-                        label='Image url'
-                        id='image-url'
-                        placeholder='http://....'
+                        type='file'
+                        onChange={uploadImage}
+                        label='Image'
+                        id='image'
+                        placeholder='Upload an image'
                     />
+                    {
+                        loading ? (<h3>Loading...</h3>) : (<div><img src={image} style={{width:'300px', height:'auto'}} /></div>)
+                    }
                     <SubmitButton title='Create' />
                 </form>
             </div>
