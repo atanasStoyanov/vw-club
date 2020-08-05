@@ -10,8 +10,14 @@
     display: flex;
     align-items: center;
     margin-bottom: 2em;
-    ;
+    background-color: rgba(128, 128, 128, 0.301);
+    flex-basis: auto;
+    justify-content: space-between;
+    /* overflow-x: scroll; */
+    
 }
+
+
 
 .create {
     margin: 0.5em 0.5em;
