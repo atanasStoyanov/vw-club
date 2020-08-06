@@ -7,7 +7,7 @@ const PostCard = ({ title, image, carModel, author, _id }) => {
     return (
         <div className={styles.card}>
             <div className={styles['card-image']}>
-                <img src={image} style={{ width: '400px', height: 'auto' }} alt='car' />
+                <img src={image} style={{ width: '400px', height: '300px' }} alt='car' />
             </div>
             <div className={styles.info}>
                 <h3>{title}</h3>
