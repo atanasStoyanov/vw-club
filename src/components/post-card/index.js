@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './index.module.css';
 import LinkButton from '../button/link-button';
 
-const PostCard = ({ title, image, description, carModel, author, _id }) => {
+const PostCard = ({ title, image, carModel, author, _id }) => {
 
     return (
         <div className={styles.card}>
             <div className={styles['card-image']}>
-                <img src={image} style={{ width: '400px', height: 'auto' }} />
+                <img src={image} style={{ width: '400px', height: 'auto' }} alt='car' />
             </div>
             <div className={styles.info}>
                 <h3>{title}</h3>

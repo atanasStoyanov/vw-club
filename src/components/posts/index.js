@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './index.module.css';
 import LinkButton from '../button/link-button';
 import PostCard from '../post-card';
@@ -15,10 +15,11 @@ const Posts = () => {
     }
 
     useEffect(() => {
-        getPosts()
-    }, []);
+        getPosts();
+    }, [])
 
     const renderPosts = () => {
+
         return posts.map(post => {
             return (
                 <PostCard key={post._id} {...post} />
