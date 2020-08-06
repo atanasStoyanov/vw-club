@@ -11,6 +11,7 @@ import LoginPage from './pages/login';
 import UserContext from './Context';
 import ForumPage from './pages/forum';
 import CreatePostPage from './pages/create-post';
+import PostDetailsPage from './pages/details-post';
 
 const Navigation = () => {
 
@@ -35,6 +36,9 @@ const Navigation = () => {
                 </Route>
                 <Route path='/forum/create-post'>
                     {loggedIn ? (<CreatePostPage />) : (<Redirect to='/login' />)}
+                </Route>
+                <Route path='/forum/post/:postId' >
+                    {loggedIn ? (<PostDetailsPage />) : (<Redirect to='/login' />)}
                 </Route>
             </Switch>
         </BrowserRouter>

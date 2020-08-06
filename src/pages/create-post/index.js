@@ -95,7 +95,7 @@ const CreatePostPage = () => {
                         placeholder='Upload an image'
                     />
                     {
-                        loading ? (<h3>Loading...</h3>) : (<div><img src={image} style={{width:'300px', height:'auto'}} /></div>)
+                        loading ? (<h3>Loading...</h3>) : (<div><img src={image} style={{width:'300px', height:'auto'}} alt='car'/></div>)
                     }
                     <SubmitButton title='Create' />
                 </form>
