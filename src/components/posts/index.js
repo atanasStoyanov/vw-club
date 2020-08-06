@@ -19,6 +19,12 @@ const Posts = () => {
     }, [])
 
     const renderPosts = () => {
+        
+        if (posts.length < 1) {
+            return(
+                <h3>There aren't any posts in the forum yet. Be the first one to create!</h3>
+            )
+        }
 
         return posts.map(post => {
             return (
@@ -29,7 +35,7 @@ const Posts = () => {
 
     return (
         <section className={styles.container}>
-            <h1>Forum Posts</h1>
+            <h1>Checkout the latest posts in the forum or create a new one</h1>
             <LinkButton href='/forum/create-post' title='Create Post' />
             <div className={styles['posts-container']}>
                 {renderPosts()}

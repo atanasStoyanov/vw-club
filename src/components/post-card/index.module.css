@@ -16,9 +16,10 @@
 .card {
     width: 400px;
     flex: 0 0 5em;
-    margin: 1em;
+    margin: 0.7em;
     background-color: gray;
     box-shadow: 2px 2px 1.5em 2px black;
+    display: inline-block
 }
 
 .model {
