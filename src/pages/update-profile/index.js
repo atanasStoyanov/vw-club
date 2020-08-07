@@ -29,7 +29,7 @@ const UpdateProfilePage = () => {
             setCarModel(user.carModel || 'No info...');
             setAvatar(user.avatar || '');
         }
-    }, [params.userId, history])
+    }, [id, history])
 
     useEffect(() => {
         getData()
