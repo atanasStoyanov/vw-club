@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PageLayout from '../../components/page-layout';
 import styles from './index.module.css';
 import Title from '../../components/title';
-import profileIcon from '../../images/profile-icon.png'
-import UserContext from '../../Context';
+import profileIcon from '../../images/profile-icon.png';
 import { useParams, useHistory } from 'react-router-dom';
+import LinkButton from '../../components/button/link-button';
 
 
 const ProfilePage = () => {
@@ -13,8 +13,9 @@ const ProfilePage = () => {
     const params = useParams();
     const history = useHistory();
 
+    const id = params.userId;
+
     const getData = useCallback(async () => {
-        const id = params.userId;
         const response = await fetch(`http://localhost:9999/api/user?id=${id}`);
 
         if (!response.ok) {
@@ -46,12 +47,13 @@ const ProfilePage = () => {
             <section className={styles.details}>
                 <Title title='My profile' />
                 <div>
-                    <img src={profileIcon} alt='car' className={styles.image} />
+                    <img src={user.avatar || profileIcon} alt='car' className={styles.image} />
                 </div>
                 <div className={styles.info}>
                     <h3>Username: {user.username}</h3>
-                    <h4 className={styles.model}><small>Car model:</small> {user.carModel || 'VW Passat'}</h4>
+                    <h4 className={styles.model}><small>Car model:</small> {user.carModel || 'No info..'}</h4>
                 </div>
+                <LinkButton href={`/update-profile/${id}`} title='Update Profile'/>
             </section>
         </PageLayout>
     )

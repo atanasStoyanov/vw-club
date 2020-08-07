@@ -13,6 +13,7 @@ import ForumPage from './pages/forum';
 import CreatePostPage from './pages/create-post';
 import PostDetailsPage from './pages/details-post';
 import ProfilePage from './pages/profile';
+import UpdateProfilePage from './pages/update-profile';
 
 const Navigation = () => {
 
@@ -43,6 +44,9 @@ const Navigation = () => {
                 </Route>
                 <Route path='/profile/:userId' >
                     {loggedIn ? (<ProfilePage />) : (<Redirect to='/login' />)}
+                </Route>
+                <Route path='/update-profile/:userId' >
+                    {loggedIn ? (<UpdateProfilePage />) : (<Redirect to='/login' />)}
                 </Route>
             </Switch>
         </BrowserRouter>

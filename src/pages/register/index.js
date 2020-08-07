@@ -39,7 +39,9 @@ class RegisterPage extends Component {
         await authenticate('http://localhost:9999/api/user/register', 
         {
             username,
-            password
+            password,
+            carModel: '',
+            avatar:''
         },
         (user) => {
            console.log('Successfull registration');
