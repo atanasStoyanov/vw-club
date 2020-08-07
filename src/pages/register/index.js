@@ -7,7 +7,6 @@ import SubmitButton from '../../components/button/submit-button';
 import authenticate from '../../utils/authenticate';
 import UserContext from '../../Context';
 
-
 class RegisterPage extends Component {
     constructor(props) {
         super(props);
