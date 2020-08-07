@@ -4,7 +4,7 @@ import Title from '../title';
 import Slogan from '../slogan';
 import UserContext from '../../Context';
 
-const InfoSection = ({ title, message, info }) => {
+const AuthInfoSection = ({ title, message, info }) => {
     const context = useContext(UserContext);
     const { username } = context.user
 
@@ -19,4 +19,4 @@ const InfoSection = ({ title, message, info }) => {
     )
 }
 
-export default InfoSection;
+export default AuthInfoSection;
