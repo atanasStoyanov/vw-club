@@ -1,28 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './index.module.css';
 import LinkButton from '../button/link-button';
 import PostCard from '../post-card';
+import Title from '../title';
 
 
-const Posts = () => {
+const Posts = ({userId, title, noPostsMsg}) => {
 
     const [posts, setPosts] = useState([]);
 
-    const getPosts = async () => {
+    const getPosts = useCallback(async () => {
         const promise = await fetch('http://localhost:9999/api/publication');
         const posts = await promise.json();
-        setPosts(posts);
-    }
+
+        if (userId) {
+            const currentUserPosts = posts.filter(post => post.author._id === userId);
+            setPosts(currentUserPosts);
+        } else {
+            setPosts(posts);
+        }
+
+    },[userId])
 
     useEffect(() => {
         getPosts();
     }, [])
 
     const renderPosts = () => {
-        
+
         if (posts.length < 1) {
             return(
-                <h3>There aren't any posts in the forum yet. Be the first one to create!</h3>
+                <h3>{noPostsMsg}</h3>
             )
         }
 
@@ -35,7 +43,7 @@ const Posts = () => {
 
     return (
         <section className={styles.container}>
-            <h1>Checkout the latest posts in the forum or create a new one</h1>
+            <Title title={title} />
             <LinkButton href='/forum/create-post' title='Create Post' />
             <div className={styles['posts-container']}>
                 {renderPosts()}
