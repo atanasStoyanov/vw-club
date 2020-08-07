@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styles from './index.module.css';
 import Title from '../title';
 import Slogan from '../slogan';
-import UserContext from '../../Context';
 
 const GuestInfoSection = ({ title, message, info }) => {
 
