@@ -3,6 +3,7 @@ import PageLayout from '../../components/page-layout';
 import styles from './index.module.css';
 import { useParams, useHistory } from 'react-router-dom';
 import Title from '../../components/title';
+import LinkButton from '../../components/button/link-button';
 
 const PostDetailsPage = () => {
 
@@ -54,6 +55,7 @@ const PostDetailsPage = () => {
                         <span><small>Author:</small> {post.author.username} </span>
                     </p>
                 </div>
+                <LinkButton href={`/forum/comment-post/:${post._id}`} title='Add comment'/>
             </section>
         </PageLayout>
     )
