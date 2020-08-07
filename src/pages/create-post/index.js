@@ -7,6 +7,7 @@ import Textarea from '../../components/textarea';
 import { useHistory } from 'react-router-dom';
 import SubmitButton from '../../components/button/submit-button';
 import getCookie from '../../utils/getCookie';
+import icon from '../../images/passat-icon.svg'
 
 const CreatePostPage = () => {
     const [title, setTitle] = useState('');
@@ -95,7 +96,7 @@ const CreatePostPage = () => {
                         placeholder='Upload an image'
                     />
                     {
-                        loading ? (<h3>Loading...</h3>) : (<div><img src={image} style={{width:'300px', height:'auto'}} alt='car'/></div>)
+                        loading ? (<h3>Loading...</h3>) : (<div><img src={image ? image : icon} style={{width:'300px', height:'auto'}} alt='car'/></div>)
                     }
                     <SubmitButton title='Create' />
                 </form>
