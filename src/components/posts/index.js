@@ -5,7 +5,7 @@ import PostCard from '../post-card';
 import Title from '../title';
 
 
-const Posts = ({userId, title, noPostsMsg}) => {
+const Posts = ({ userId, title, noPostsMsg }) => {
 
     const [posts, setPosts] = useState([]);
 
@@ -20,7 +20,7 @@ const Posts = ({userId, title, noPostsMsg}) => {
             setPosts(posts);
         }
 
-    },[userId])
+    }, [userId])
 
     useEffect(() => {
         getPosts();
@@ -29,7 +29,7 @@ const Posts = ({userId, title, noPostsMsg}) => {
     const renderPosts = () => {
 
         if (posts.length < 1) {
-            return(
+            return (
                 <h3>{noPostsMsg}</h3>
             )
         }
