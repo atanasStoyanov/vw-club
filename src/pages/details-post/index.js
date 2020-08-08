@@ -50,8 +50,8 @@ const PostDetailsPage = () => {
     const handleLike = async () => {
         const response = await fetch(`http://localhost:9999/api/publication/like-post?id=${id}`, {
             headers: {
-                'Content-Type' : 'application/json',
-                'Authorization' : getCookie('x-auth-token')
+                'Content-Type': 'application/json',
+                'Authorization': getCookie('x-auth-token')
             }
         });
 
@@ -61,6 +61,23 @@ const PostDetailsPage = () => {
 
             setIsLiked(true);
         }
+    }
+
+    const handleDelete = async () => {
+        const response = await fetch(`http://localhost:9999/api/publication?id=${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': getCookie('x-auth-token')
+            }
+        })
+
+        if (!response.ok) {
+            history.push('/error');
+        } else {
+            history.push('/forum')
+        }
+
     }
 
     const renderComments = () => {
@@ -100,9 +117,9 @@ const PostDetailsPage = () => {
                 <Title title={post.title} />
                 <PostDetailsInfo post={post} />
                 <LinkButton href={`/forum/comment-post/:${post._id}`} title='Add comment' />
-                {isAuthor ? 
-                (<SubmitButton title='Delete Post' />) : 
-                (<SubmitButton title={likeBtnTitle} onClick={handleLike} disabled={isLiked ? true : false}/>)}
+                {isAuthor ?
+                    (<SubmitButton title='Delete Post' onClick={handleDelete} />) :
+                    (<SubmitButton title={likeBtnTitle} onClick={handleLike} disabled={isLiked ? true : false} />)}
             </Container>
             <Container>
                 <Title title='Comments' />

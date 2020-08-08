@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
+import SmallParagraph from '../small-paragraph';
 
 const PostDetailsInfo = ({ post }) => {
 
@@ -12,9 +13,9 @@ const PostDetailsInfo = ({ post }) => {
                 <h4 className={styles.model}><small>Car model:</small> {post.carModel}</h4>
                 <h3>Post Description</h3>
                 <p>{post.description}</p>
-                <p className={styles.author}>
-                    <span><small>Author:</small> {post.author.username} </span>
-                </p>
+                <SmallParagraph label='Comments' value={post.comments.length}/>
+                <SmallParagraph label='Likes' value={post.likes.length}/>
+                <SmallParagraph label='Author' value={post.author.username}/>
             </div>
         </div>
     )
