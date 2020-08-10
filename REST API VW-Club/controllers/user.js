@@ -11,7 +11,12 @@ module.exports = {
 
     post: {
         register: (req, res, next) => {
-            const { username, password, carModel, avatar } = req.body;
+            const { username, password, carModel, avatar, rePassword } = req.body;
+
+            if (password !== rePassword) {
+                return res.status(401).send('Passwords do not match!');
+            } 
+            
             models.User.create({ username, password, carModel, avatar })
                 .then((createdUser) => {
                     const token = utils.jwt.createToken({ id: createdUser._id });
@@ -23,8 +28,16 @@ module.exports = {
         login: (req, res, next) => {
             const { username, password } = req.body;
             models.User.findOne({ username })
-                .then((user) => Promise.all([user, user.matchPassword(password)]))
+                .then((user) => {
+                    if (!user) {
+                        res.status(401).send('Invalid username');
+                        return
+                    }
+
+                    return Promise.all([user, user.matchPassword(password)])
+                })
                 .then(([user, match]) => {
+
                     if (!match) {
                         res.status(401).send('Invalid password');
                         return;

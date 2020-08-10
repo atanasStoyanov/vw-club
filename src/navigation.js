@@ -15,6 +15,7 @@ import PostDetailsPage from './pages/details-post';
 import ProfilePage from './pages/profile';
 import UpdateProfilePage from './pages/update-profile';
 import CommentPostPage from './pages/comment-post';
+import ErrorPage from './pages/error';
 
 const Navigation = () => {
 
@@ -52,6 +53,7 @@ const Navigation = () => {
                 <Route path='/update-profile/:userId' >
                     {loggedIn ? (<UpdateProfilePage />) : (<Redirect to='/login' />)}
                 </Route>
+                <Route component={ErrorPage} />
             </Switch>
         </BrowserRouter>
     )

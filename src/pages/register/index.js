@@ -1,98 +1,88 @@
-import React, { Component } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './index.module.css';
 import PageLayout from '../../components/page-layout';
 import Title from '../../components/title';
 import Input from '../../components/input';
 import SubmitButton from '../../components/button/submit-button';
+import ErrorMsg from '../../components/error-msg';
 import authenticate from '../../utils/authenticate';
 import UserContext from '../../Context';
+import { useHistory } from 'react-router-dom';
 
-class RegisterPage extends Component {
-    constructor(props) {
-        super(props);
+const RegisterPage = () => {
 
-        this.state = {
-            username: '',
-            password: '',
-            rePassword: ''
-        }
-    }
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [rePassword, setRePassword] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
 
-    static contextType = UserContext;
+    const context = useContext(UserContext);
+    const history = useHistory();
 
-
-    handleChange = (event, type) => {
-        const newState = {};
-        newState[type] = event.target.value;
-
-        this.setState(newState);
-
-    }
-
-    handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const {
-            username,
-            password
-        } = this.state
 
-        await authenticate('http://localhost:9999/api/user/register', 
-        {
-            username,
-            password,
-            carModel: '',
-            avatar:''
-        },
-        (user) => {
-           console.log('Successfull registration');
-           this.context.logIn(user);
-            this.props.history.push('/');
-        },
-        (e) => console.log('Error: ', e));
+        if (password !== rePassword) {
+            setErrorMsg('Passwords do not match');
+            return;
+        }
+
+        await authenticate('http://localhost:9999/api/user/register',
+            {
+                username,
+                password,
+                rePassword,
+                carModel: '',
+                avatar: ''
+            },
+            (user) => {
+                console.log('Successfull registration');
+                context.logIn(user);
+                history.push('/');
+            },
+            (e) => console.log('Error: ', e));
     }
 
-
-    render() {
-        const {
-            username,
-            password,
-            rePassword
-        } = this.state;
-
-        return (
-            <PageLayout>
-                <div className={styles.container}>
-                    <form className={styles.form} onSubmit={this.handleSubmit}>
-                        <Title title='REGISTER' />
-                        <Input
-                            value={username}
-                            onChange={(e) => this.handleChange(e, 'username')}
-                            label='Username'
-                            id='username'
-                            placeholder='Pesho'
-                        />
-                        <Input
-                            type='password'
-                            value={password}
-                            onChange={(e) => this.handleChange(e, 'password')}
-                            label='Password'
-                            id='password'
-                            placeholder='******'
-                        />
-                        <Input
-                            type='password'
-                            value={rePassword}
-                            onChange={(e) => this.handleChange(e, 'rePassword')}
-                            label='Re-password'
-                            id='re-password'
-                            placeholder='******'
-                        />
-                        <SubmitButton title='Register' />
-                    </form>
-                </div>
-            </PageLayout>
-        )
-    }
+    return (
+        <PageLayout>
+            <div className={styles.container}>
+                <form className={styles.form} onSubmit={handleSubmit}>
+                    <Title title='REGISTER' />
+                    <Input
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        label='Username'
+                        id='username'
+                        placeholder='Pesho'
+                    />
+                    <Input
+                        type='password'
+                        value={password}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                            setErrorMsg(null);
+                        }}
+                        label='Password'
+                        id='password'
+                        placeholder='******'
+                    />
+                    <Input
+                        type='password'
+                        value={rePassword}
+                        onChange={(e) => {
+                            setRePassword(e.target.value);
+                            setErrorMsg(null);
+                        }}
+                        label='Re-password'
+                        id='re-password'
+                        placeholder='******'
+                    />
+                    {errorMsg ? (<ErrorMsg msg={errorMsg} />) : null}
+                    <SubmitButton title='Register' />
+                </form>
+            </div>
+        </PageLayout>
+    )
 }
 
 export default RegisterPage;

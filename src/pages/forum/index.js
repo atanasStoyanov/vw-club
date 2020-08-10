@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PageLayout from '../../components/page-layout';
 import AuthInfoSection from '../../components/auth-info-section';
 import Posts from '../../components/posts';
