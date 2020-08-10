@@ -3,7 +3,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = {
     development: {
         port: process.env.PORT || 9999,
-        dbURL: 'mongodb+srv://pesho:softunipass@cluster0-xefwn.mongodb.net/vw-club?retryWrites=true&w=majority',
+        dbURL: process.env.DATABASE_URL,
         authCookieName: 'x-auth-token'
     },
     production: {}
