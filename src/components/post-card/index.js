@@ -2,13 +2,14 @@ import React from 'react';
 import styles from './index.module.css';
 import LinkButton from '../button/link-button';
 import SmallParagraph from '../small-paragraph';
+import icon from '../../images/passat-icon.svg';
 
 const PostCard = ({ title, image, carModel, comments, likes, author, _id }) => {
 
     return (
         <div className={styles.card}>
             <div className={styles['card-image']}>
-                <img src={image} style={{ width: '400px', height: '300px' }} alt='car' />
+                <img src={image || icon} style={{ width: '400px', height: '300px' }} alt='car' />
             </div>
             <div className={styles.info}>
                 <h3>{title}</h3>

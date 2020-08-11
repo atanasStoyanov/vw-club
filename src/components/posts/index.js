@@ -45,9 +45,9 @@ const Posts = ({ userId, title, noPostsMsg }) => {
         <section className={styles.container}>
             <Title title={title} />
             <LinkButton href='/forum/create-post' title='Create Post' />
-            <div className={styles['posts-container']}>
-                {renderPosts()}
-            </div>
+                <div className={styles['posts-container']}>
+                    {renderPosts()}
+                </div>
 
         </section>
     )
