@@ -30,6 +30,9 @@ module.exports = {
         const { title, carModel, description, image } = req.body;
         const { _id } = req.user;
 
+        if (!title || !carModel || !description) {
+            return res.status(400).send('Invalid data!');
+        }
         models.Publication.create({ title, carModel, description, image, author: _id })
             .then((createdPublication) => {
                 return Promise.all([

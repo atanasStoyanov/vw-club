@@ -2,8 +2,9 @@ import React, { useState, useCallback, useEffect } from 'react';
 import styles from './index.module.css';
 import PageLayout from '../../components/page-layout';
 import Title from '../../components/title';
-import profileIcon from '../../images/profile-icon.png';
 import Input from '../../components/input';
+import ErrorMsg from '../../components/error-msg';
+import profileIcon from '../../images/profile-icon.png';
 import { useHistory, useParams } from 'react-router-dom';
 import SubmitButton from '../../components/button/submit-button';
 
@@ -13,6 +14,7 @@ const UpdateProfilePage = () => {
     const [carModel, setCarModel] = useState('');
     const [avatar, setAvatar] = useState('');
     const [loading, setLoading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
     const params = useParams();
     const history = useHistory();
 
@@ -59,6 +61,11 @@ const UpdateProfilePage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!username || !username.match(/^[a-zA-z0-9]{3,}$/)) {
+            setErrorMsg('Username must consist only letters and digits and to be atleast 3 charecters long!');
+            return;
+        }
+
         await fetch(`http://localhost:9999/api/user/${id}`,{
             method: 'PUT',
             body: JSON.stringify({
@@ -70,9 +77,14 @@ const UpdateProfilePage = () => {
                 'Content-Type' : 'application/json',
             }
         }).then(res => {
+
+            if (res.status === 400) {
+                setErrorMsg('Username must consist only letters and digits and to be atleast 3 charecters long!');
+                return;
+            }
             history.push(`/profile/${id}`);
         }).catch(e => {
-            console.log('Error: ', e);
+            history.push('/error');
         })
 
     }
@@ -104,6 +116,7 @@ const UpdateProfilePage = () => {
                     {
                         loading ? (<h3>Loading...</h3>) : (<div><img src={avatar ? avatar : profileIcon} style={{ width: '300px', height: 'auto' }} alt='profile pic' /></div>)
                     }
+                    {errorMsg ? (<ErrorMsg msg={errorMsg} />) : null}
                     <SubmitButton title='Update' />
                 </form>
             </section>

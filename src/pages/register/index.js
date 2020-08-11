@@ -22,8 +22,18 @@ const RegisterPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (password !== rePassword) {
+        if (!username || !username.match(/^[a-zA-z0-9]{3,}$/)) {
+            setErrorMsg('Username must consist only letters and digits and to be atleast 3 charecters long!');
+            return;
+        }
+
+        if ((password !== rePassword) || !password) {
             setErrorMsg('Passwords do not match');
+            return;
+        }
+
+        if (!password || password.length < 6) {
+            setErrorMsg('Password must be atleast 6 characters long');
             return;
         }
 
@@ -40,7 +50,9 @@ const RegisterPage = () => {
                 context.logIn(user);
                 history.push('/');
             },
-            (e) => console.log('Error: ', e));
+            (e) => {
+                setErrorMsg('Invalid username or password');
+            });
     }
 
     return (
@@ -50,7 +62,10 @@ const RegisterPage = () => {
                     <Title title='REGISTER' />
                     <Input
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={(e) => {
+                            setUsername(e.target.value);
+                            setErrorMsg(null);
+                        }}
                         label='Username'
                         id='username'
                         placeholder='Pesho'

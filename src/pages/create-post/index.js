@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styles from './index.module.css';
 import PageLayout from '../../components/page-layout';
 import Title from '../../components/title';
 import Input from '../../components/input';
 import Textarea from '../../components/textarea';
-import { useHistory } from 'react-router-dom';
+import ErrorMsg from '../../components/error-msg';
 import SubmitButton from '../../components/button/submit-button';
 import getCookie from '../../utils/getCookie';
 import icon from '../../images/passat-icon.svg'
@@ -15,6 +16,7 @@ const CreatePostPage = () => {
     const [model, setModel] = useState('');
     const [loading, setLoading] = useState(false);
     const [image, setImage] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
 
     const history = useHistory();
 
@@ -42,7 +44,22 @@ const CreatePostPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await fetch('http://localhost:9999/api/publication',{
+        if (title === '') {
+            setErrorMsg('Please provide Title!');
+            return;
+        }
+
+        if (model === '') {
+            setErrorMsg('Please specify Car Model!');
+            return;
+        }
+
+        if (description === '') {
+            setErrorMsg('Please provide Description!');
+            return;
+        }
+
+        await fetch('http://localhost:9999/api/publication', {
             method: 'POST',
             body: JSON.stringify({
                 title,
@@ -51,13 +68,17 @@ const CreatePostPage = () => {
                 image
             }),
             headers: {
-                'Content-Type' : 'application/json',
-                'Authorization' : getCookie('x-auth-token')
+                'Content-Type': 'application/json',
+                'Authorization': getCookie('x-auth-token')
             }
         }).then(res => {
+            if (res.status === 400) {
+                setErrorMsg('Title, Car Model and Description are required fields!');
+                return;
+            }
             history.push('/forum');
         }).catch(e => {
-            console.log('Error: ', e);
+            setErrorMsg('Something went wrong!');
         })
 
     }
@@ -69,21 +90,30 @@ const CreatePostPage = () => {
                     <Title title='Create Post' />
                     <Input
                         value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        onChange={(e) => {
+                            setTitle(e.target.value);
+                            setErrorMsg(null);
+                        }}
                         label='Title'
                         id='title'
                         placeholder='Title...'
                     />
                     <Input
                         value={model}
-                        onChange={(e) => setModel(e.target.value)}
+                        onChange={(e) => {
+                            setModel(e.target.value);
+                            setErrorMsg(null);
+                        }}
                         label='Car Model'
                         id='car-model'
                         placeholder='VW Passat B7...'
                     />
                     <Textarea
                         value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        onChange={(e) => {
+                            setDescription(e.target.value);
+                            setErrorMsg(null);
+                        }}
                         label='Description'
                         id='description'
                         placeholder='Describe your post...'
@@ -96,8 +126,9 @@ const CreatePostPage = () => {
                         placeholder='Upload an image'
                     />
                     {
-                        loading ? (<h3>Loading...</h3>) : (<div><img src={image ? image : icon} style={{width:'300px', height:'auto'}} alt='car'/></div>)
+                        loading ? (<h3>Loading...</h3>) : (<div><img src={image ? image : icon} style={{ width: '300px', height: 'auto' }} alt='car' /></div>)
                     }
+                    {errorMsg ? (<ErrorMsg msg={errorMsg} />) : null}
                     <SubmitButton title='Create' />
                 </form>
             </div>

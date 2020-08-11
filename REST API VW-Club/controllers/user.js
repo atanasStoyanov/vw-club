@@ -13,9 +13,17 @@ module.exports = {
         register: (req, res, next) => {
             const { username, password, carModel, avatar, rePassword } = req.body;
 
+            if (!username.match(/^[a-zA-z0-9]{3,}$/)) {
+                return res.status(401).send('Username must consist only letters and digits and to be atleast 3 charecters long!');
+            }
+
+            if (password.length < 6) {
+                return res.status(401).send('Password must be atleast 6 characters long');
+            }
+
             if (password !== rePassword) {
                 return res.status(401).send('Passwords do not match!');
-            } 
+            }
             
             models.User.create({ username, password, carModel, avatar })
                 .then((createdUser) => {
@@ -97,6 +105,11 @@ module.exports = {
         const id = req.params.id;
         console.log(id);
         const { username, carModel, avatar } = req.body;
+
+        if (!username.match(/^[a-zA-z0-9]{3,}$/)) {
+            return res.status(400).send('Username must consist only letters and digits and to be atleast 3 charecters long!');
+        }
+
         models.User.updateOne({ _id: id }, { username, carModel, avatar })
             .then((updatedUser) => res.send(updatedUser))
             .catch(next)
