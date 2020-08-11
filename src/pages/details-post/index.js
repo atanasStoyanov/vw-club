@@ -9,7 +9,8 @@ import Container from '../../components/post-details-container';
 import PostDetailsInfo from '../../components/post-details-info';
 import LinkButton from '../../components/button/link-button';
 import SubmitButton from '../../components/button/submit-button';
-import Comment from '../../components/comment';
+import ComponentErrorBoundery from '../../components/component-erroBoundery';
+import Comments from '../../components/comments';
 
 const PostDetailsPage = () => {
 
@@ -80,22 +81,6 @@ const PostDetailsPage = () => {
 
     }
 
-    const renderComments = () => {
-        if (post.comments.length < 1) {
-            return (
-                <h3>No comments yet!</h3>
-            )
-        }
-
-        return (
-            post.comments.map(comment => {
-                return (
-                    <Comment key={comment._id} {...comment} />
-                )
-            })
-        )
-    }
-
     useEffect(() => {
         getPost();
     }, [])
@@ -113,18 +98,22 @@ const PostDetailsPage = () => {
     return (
 
         <PageLayout>
-            <Container>
-                <Title title={post.title} />
-                <PostDetailsInfo post={post} />
-                <LinkButton href={`/forum/comment-post/:${post._id}`} title='Add comment' />
-                {isAuthor ?
-                    (<SubmitButton title='Delete Post' onClick={handleDelete} />) :
-                    (<SubmitButton title={likeBtnTitle} onClick={handleLike} disabled={isLiked ? true : false} />)}
-            </Container>
-            <Container>
-                <Title title='Comments' />
-                {renderComments()}
-            </Container>
+            <ComponentErrorBoundery>
+                <Container>
+                    <Title title={post.title} />
+                    <PostDetailsInfo post={post} />
+                    <LinkButton href={`/forum/comment-post/:${post._id}`} title='Add comment' />
+                    {isAuthor ?
+                        (<SubmitButton title='Delete Post' onClick={handleDelete} />) :
+                        (<SubmitButton title={likeBtnTitle} onClick={handleLike} disabled={isLiked ? true : false} />)}
+                </Container>
+            </ComponentErrorBoundery>
+            <ComponentErrorBoundery>
+                <Container>
+                    <Title title='Comments' />
+                    <Comments post={post} />
+                </Container>
+            </ComponentErrorBoundery>
         </PageLayout>
     )
 }

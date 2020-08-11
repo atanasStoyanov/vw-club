@@ -6,7 +6,7 @@ const Footer = () => {
     return(
         <footer>
             <div className={styles.footer}>
-                <p className={styles['copy-right']}>Copyright © VW-Club 2020</p>
+                <p className={styles['copy-right']}>Copyright © VW Passat Club 2020</p>
             </div>
         </footer>
     )

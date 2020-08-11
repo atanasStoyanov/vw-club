@@ -2,10 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import PageLayout from '../../components/page-layout';
 import styles from './index.module.css';
 import Title from '../../components/title';
-import profileIcon from '../../images/profile-icon.png';
 import { useParams, useHistory } from 'react-router-dom';
-import LinkButton from '../../components/button/link-button';
 import Posts from '../../components/posts';
+import ComponentErrorBoundery from '../../components/component-erroBoundery';
+import UserInfo from '../../components/user-profile-info';
 
 
 const ProfilePage = () => {
@@ -45,20 +45,12 @@ const ProfilePage = () => {
 
     return (
         <PageLayout>
-            <section className={styles.details}>
-                <Title title='My profile' />
-                <div>
-                    <img src={user.avatar || profileIcon} alt='car' className={styles.image} />
-                </div>
-                <div className={styles.info}>
-                    <h3>Username: {user.username}</h3>
-                    <h4 className={styles.model}><small>Car model:</small> {user.carModel || 'No info..'}</h4>
-                    <h4 className={styles.model}><small>Posts:</small> {posts}</h4>
-                </div>
-                <LinkButton href={`/update-profile/${id}`} title='Update Profile'/>
-            </section>
-
-            <Posts userId={user._id} title='My Posts' noPostsMsg="You don't have any posts yet"/>
+            <ComponentErrorBoundery>
+                <UserInfo user={user} />
+            </ComponentErrorBoundery>
+            <ComponentErrorBoundery>
+                <Posts userId={user._id} title='My Posts' noPostsMsg="You don't have any posts yet" />
+            </ComponentErrorBoundery>
         </PageLayout>
     )
 }
