@@ -11,7 +11,7 @@ const ErrorPage = () => {
             <div className={styles.container}>
                 <div className={styles.section}>
                     <Title title='Something went wrong...' />
-                    <img src={errorImg} className={styles['error-img']} />
+                    <img src={errorImg} className={styles['error-img']} alt='error-image' />
                 </div>
             </div>
         </PageLayout>
