@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageLayout Component should render page page layout 1`] = `
+<div
+  className="app"
+>
+  <Header />
+  <div
+    className="container"
+  >
+    <div
+      className="inner-container"
+    />
+  </div>
+  <footer>
+    <div
+      className="footer"
+    >
+      <p
+        className="copy-right"
+      >
+        Copyright © VW Passat Club 2020
+      </p>
+    </div>
+  </footer>
+</div>
+`;

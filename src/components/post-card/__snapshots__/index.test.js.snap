@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostCard Component should render post card with title=Test 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-image"
+  >
+    <img
+      alt="car"
+      src="passat-icon.svg"
+      style={
+        Object {
+          "height": "300px",
+          "width": "400px",
+        }
+      }
+    />
+  </div>
+  <div
+    className="info"
+  >
+    <h3>
+      Test
+    </h3>
+    <h4
+      className="model"
+    >
+      Test car
+    </h4>
+    <PostValues />
+    <LinkButton
+      href="/forum/post/:123"
+      title="Details"
+    />
+  </div>
+</div>
+`;

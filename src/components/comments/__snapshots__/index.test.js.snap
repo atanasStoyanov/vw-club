@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comments Component should return "No comments yet" 1`] = `
+<h3>
+  No comments yet!
+</h3>
+`;
+
+exports[`Comments Component should return one comment 1`] = `
+<Comment
+  _id={1}
+/>
+`;

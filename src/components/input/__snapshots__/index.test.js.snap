@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input Component should render input field with label=Test 1`] = `
+<div
+  className="form-div"
+>
+  <label
+    className="label"
+    htmlFor="Test"
+  >
+    Test
+    :
+  </label>
+  <input
+    className="input"
+    id="Test"
+    onChange="Test"
+    placeholder="Test"
+    type="text"
+    value="Test"
+  />
+</div>
+`;

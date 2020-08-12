@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comment Component should render comment with text "Test" and author "Pesho" 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="element"
+  >
+    <img
+      alt="avatar"
+      src="profile-icon.png"
+      style={
+        Object {
+          "height": "50px",
+          "width": "60px",
+        }
+      }
+    />
+  </div>
+  <div
+    className="element"
+  >
+    <h3>
+       
+      Pesho
+    </h3>
+    <div
+      className="comment"
+    >
+      <p>
+        Test
+      </p>
+    </div>
+  </div>
+</div>
+`;
