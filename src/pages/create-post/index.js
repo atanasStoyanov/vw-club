@@ -9,6 +9,7 @@ import ErrorMsg from '../../components/error-msg';
 import SubmitButton from '../../components/button/submit-button';
 import getCookie from '../../utils/getCookie';
 import icon from '../../images/passat-icon.svg'
+import uploadImage from '../../utils/uploadImage';
 
 const CreatePostPage = () => {
     const [title, setTitle] = useState('');
@@ -20,25 +21,8 @@ const CreatePostPage = () => {
 
     const history = useHistory();
 
-    const uploadImage = async (e) => {
-        const files = e.target.files;
-
-        const data = new FormData();
-        data.append('file', files[0]);
-        data.append('upload_preset', 'VWimages');
-
-        setLoading(true);
-
-        const res = await fetch('https://api.cloudinary.com/v1_1/dbnasko/image/upload', {
-            method: 'POST',
-            body: data
-        });
-
-        const file = await res.json();
-
-        setImage(file.secure_url);
-        setLoading(false);
-
+    const uploadCarImage = (e) => {
+        uploadImage(e.target.files, 'https://api.cloudinary.com/v1_1/dbnasko/image/upload', 'VWimages', setLoading, setImage);
     }
 
     const handleSubmit = async (e) => {
@@ -120,7 +104,7 @@ const CreatePostPage = () => {
                     />
                     <Input
                         type='file'
-                        onChange={uploadImage}
+                        onChange={uploadCarImage}
                         label='Image'
                         id='image'
                         placeholder='Upload an image'

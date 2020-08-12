@@ -2,9 +2,12 @@
 
 This is a VW Passat Club web application. The aim of the project is to provide a platform for discussions and events related to VW Passat cars.
 
-## Technologies
+## Built with
 
-The front-end of the project is based on React. The back-end depends on a REST API built with Express server.
+* [React](https://reactjs.org/) - The web framework used;
+* [Express](https://expressjs.com/) - The back-end framework used to built REST API;
+* [Mongoose](https://mongoosejs.com/) - Object Data Modeling (ODM) library for MongoDB and Node.js;
+
 
 ## Getting started 
 
