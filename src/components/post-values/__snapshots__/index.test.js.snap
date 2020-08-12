@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostValues Component should render post values with comment=1, likes=2, author="Pesho: 1`] = `
+<div>
+  <p>
+    <span>
+      <small>
+        Comments
+        :
+      </small>
+       
+      1
+    </span>
+  </p>
+  <p>
+    <span>
+      <small>
+        Likes
+        :
+      </small>
+       
+      2
+    </span>
+  </p>
+  <p>
+    <span>
+      <small>
+        Author
+        :
+      </small>
+       
+      Pesho
+    </span>
+  </p>
+</div>
+`;

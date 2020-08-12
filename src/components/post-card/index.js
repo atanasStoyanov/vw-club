@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './index.module.css';
 import LinkButton from '../button/link-button';
-import SmallParagraph from '../small-paragraph';
+import PostValues from '../post-values';
 import icon from '../../images/passat-icon.svg';
+
 
 const PostCard = ({ title, image, carModel, comments, likes, author, _id }) => {
 
@@ -14,9 +15,7 @@ const PostCard = ({ title, image, carModel, comments, likes, author, _id }) => {
             <div className={styles.info}>
                 <h3>{title}</h3>
                 <h4 className={styles.model}>{carModel}</h4>
-                <SmallParagraph label='Comments' value={comments.length}/>
-                <SmallParagraph label='Likes' value={likes.length}/>
-                <SmallParagraph label='Author' value={author.username}/>
+                <PostValues comments={comments} likes={likes} author={author}/>
                 <LinkButton href={`/forum/post/:${_id}`} title='Details' />
             </div>
         </div>

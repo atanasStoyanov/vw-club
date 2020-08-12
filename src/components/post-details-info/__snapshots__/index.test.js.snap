@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostDetailsInfo Component should render post details info with carModel="Test car" and description="Test desc" 1`] = `
+<div>
+  <div>
+    <img
+      alt="car"
+      className="image"
+      src="passat-icon.svg"
+    />
+  </div>
+  <div
+    className="info"
+  >
+    <h4
+      className="model"
+    >
+      <small>
+        Car model:
+      </small>
+       
+      Test car
+    </h4>
+    <h3>
+      Post Description
+    </h3>
+    <p>
+      Test desc
+    </p>
+    <PostValues />
+  </div>
+</div>
+`;

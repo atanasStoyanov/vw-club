@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component should render authenticated routes 1`] = `
+<header
+  className="navigation"
+>
+  <img
+    alt="vw-logo"
+    className="logo"
+    src="vw-logo.png"
+  />
+  <div
+    className="header-list-item"
+  >
+    <a
+      className="header-link"
+      href="/"
+      onClick={[Function]}
+    >
+      Home
+    </a>
+  </div>
+  <div
+    className="header-list-item"
+  >
+    <a
+      className="header-link"
+      href="/forum"
+      onClick={[Function]}
+    >
+      Forum
+    </a>
+  </div>
+  <div
+    className="header-list-item"
+  >
+    <a
+      className="header-link"
+      href="/events"
+      onClick={[Function]}
+    >
+      Events
+    </a>
+  </div>
+  <div
+    className="header-list-item"
+  >
+    <a
+      className="header-link"
+      href="/profile/123"
+      onClick={[Function]}
+    >
+      Profile
+    </a>
+  </div>
+  <div
+    className="header-list-item"
+  >
+    <a
+      className="header-link"
+      href="/"
+      onClick={[Function]}
+    >
+      Logout
+    </a>
+  </div>
+</header>
+`;
+
+exports[`Header Component should render non-authenticated routes 1`] = `
+<header
+  className="navigation"
+>
+  <img
+    alt="vw-logo"
+    className="logo"
+    src="vw-logo.png"
+  />
+  <div
+    className="header-list-item"
+  >
+    <a
+      className="header-link"
+      href="/"
+      onClick={[Function]}
+    >
+      Home
+    </a>
+  </div>
+  <div
+    className="header-list-item"
+  >
+    <a
+      className="header-link"
+      href="/login"
+      onClick={[Function]}
+    >
+      Login
+    </a>
+  </div>
+  <div
+    className="header-list-item"
+  >
+    <a
+      className="header-link"
+      href="/register"
+      onClick={[Function]}
+    >
+      Register
+    </a>
+  </div>
+</header>
+`;
