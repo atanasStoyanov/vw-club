@@ -7,6 +7,7 @@ import ErrorMsg from '../../components/error-msg';
 import profileIcon from '../../images/profile-icon.png';
 import { useHistory, useParams } from 'react-router-dom';
 import SubmitButton from '../../components/button/submit-button';
+import uploadImage from '../../utils/uploadImage';
 
 
 const UpdateProfilePage = () => {
@@ -37,25 +38,9 @@ const UpdateProfilePage = () => {
         getData()
     }, [getData])
 
-    const uploadImage = async (e) => {
-        const files = e.target.files;
 
-        const data = new FormData();
-        data.append('file', files[0]);
-        data.append('upload_preset', 'VW-avatars');
-
-        setLoading(true);
-
-        const res = await fetch('https://api.cloudinary.com/v1_1/dbnasko/image/upload', {
-            method: 'POST',
-            body: data
-        });
-
-        const file = await res.json();
-
-        setAvatar(file.secure_url);
-        setLoading(false);
-
+    const uploadAvatar = (e) => {
+        uploadImage(e.target.files, 'https://api.cloudinary.com/v1_1/dbnasko/image/upload', 'VW-avatars', setLoading, setAvatar);
     }
 
     const handleSubmit = async (e) => {
@@ -108,7 +93,7 @@ const UpdateProfilePage = () => {
                     />
                     <Input
                         type='file'
-                        onChange={uploadImage}
+                        onChange={uploadAvatar}
                         label='Avatar'
                         id='avatar'
                         placeholder='Upload an image'
