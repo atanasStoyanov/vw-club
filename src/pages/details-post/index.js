@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import styles from './index.module.css';
 import { useParams, useHistory } from 'react-router-dom';
 import UserContext from '../../Context';
@@ -7,16 +7,20 @@ import PageLayout from '../../components/page-layout';
 import Title from '../../components/title';
 import Container from '../../components/post-details-container';
 import PostDetailsInfo from '../../components/post-details-info';
-import LinkButton from '../../components/button/link-button';
 import SubmitButton from '../../components/button/submit-button';
 import ComponentErrorBoundery from '../../components/component-erroBoundery';
 import Comments from '../../components/comments';
+import Textarea from '../../components/textarea';
+import ErrorMsg from '../../components/error-msg';
 
 const PostDetailsPage = () => {
 
     const [post, setPost] = useState(null);
     const [isAuthor, setIsAuthor] = useState(false);
     const [isLiked, setIsLiked] = useState(null);
+    const [comment, setComment] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
+    const [newComment, setNewComment] = useState([]);
 
     const context = useContext(UserContext);
     const params = useParams();
@@ -27,8 +31,7 @@ const PostDetailsPage = () => {
 
     const likeBtnTitle = isLiked ? 'Already Liked' : 'Like Post';
 
-    const getPost = async () => {
-
+    const getPost = useCallback(async () => {
         const response = await fetch(`http://localhost:9999/api/publication/details?id=${id}`);
 
         if (!response.ok) {
@@ -46,7 +49,11 @@ const PostDetailsPage = () => {
             setIsAuthor(isAuthor);
             setIsLiked(isLiked);
         }
-    }
+    }, [context.user.id, history, id])
+
+    useEffect(() => {
+        getPost();
+    }, [getPost, newComment])
 
     const handleLike = async () => {
         const response = await fetch(`http://localhost:9999/api/publication/like-post?id=${id}`, {
@@ -81,9 +88,32 @@ const PostDetailsPage = () => {
 
     }
 
-    useEffect(() => {
-        getPost();
-    }, [])
+    const handleComment = async (e) => {
+        e.preventDefault();
+
+        if (comment === '') {
+            setErrorMsg('Cannot submit empty comment!');
+            return;
+        }
+
+        await fetch('http://localhost:9999/api/comment', {
+            method: 'POST',
+            body: JSON.stringify({
+                comment,
+                postId: id
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': getCookie('x-auth-token')
+            }
+        }).then(res => {
+            setComment('');
+            setNewComment([...newComment, 1])
+        }).catch(e => {
+            console.log('Error: ', e);
+        })
+    }
+
 
     if (!post) {
         return (
@@ -102,7 +132,6 @@ const PostDetailsPage = () => {
                 <Container>
                     <Title title={post.title} />
                     <PostDetailsInfo post={post} />
-                    <LinkButton href={`/forum/comment-post/:${post._id}`} title='Add comment' />
                     {isAuthor ?
                         (<SubmitButton title='Delete Post' onClick={handleDelete} />) :
                         (<SubmitButton title={likeBtnTitle} onClick={handleLike} disabled={isLiked ? true : false} />)}
@@ -111,6 +140,21 @@ const PostDetailsPage = () => {
             <ComponentErrorBoundery>
                 <Container>
                     <Title title='Comments' />
+                    <form onSubmit={handleComment}>
+                        <Textarea
+                            value={comment}
+                            onChange={(e) => {
+                                setComment(e.target.value);
+                                setErrorMsg('');
+                            }}
+                            label='Add Comment'
+                            id='comment'
+                            placeholder='Share your thoughts here...'
+                        />
+                        {errorMsg ? (<ErrorMsg msg={errorMsg} />) : null}
+                        <SubmitButton title='Comment' />
+                    </form>
+
                     <Comments post={post} />
                 </Container>
             </ComponentErrorBoundery>
