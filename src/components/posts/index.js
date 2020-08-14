@@ -3,6 +3,7 @@ import styles from './index.module.css';
 import LinkButton from '../button/link-button';
 import PostCard from '../post-card';
 import Title from '../title';
+import ContainerSection from '../container-section';
 
 
 const Posts = ({ userId, title, noPostsMsg }) => {
@@ -42,14 +43,14 @@ const Posts = ({ userId, title, noPostsMsg }) => {
     }
 
     return (
-        <section className={styles.container}>
+        <ContainerSection>
             <Title title={title} />
             <LinkButton href='/forum/create-post' title='Create Post' />
-                <div className={styles['posts-container']}>
-                    {renderPosts()}
-                </div>
+            <div className={styles['posts-container']}>
+                {renderPosts()}
+            </div>
+        </ContainerSection>
 
-        </section>
     )
 }
 

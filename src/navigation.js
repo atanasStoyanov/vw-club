@@ -29,14 +29,14 @@ const Navigation = () => {
         <BrowserRouter>
             <Switch>
                 <Route path='/' exact component={HomePage} />
-                <Route path='/forum' exact>
-                    {loggedIn ? (<ForumPage />) : (<Redirect to='/login' />)}
-                </Route>
                 <Route path='/register'>
                     {!loggedIn ? (<RegisterPage />) : (<Redirect to='/' />)}
                 </Route>
                 <Route path='/login'>
                     {!loggedIn ? (<LoginPage />) : (<Redirect to='/' />)}
+                </Route>
+                <Route path='/forum' exact>
+                    {loggedIn ? (<ForumPage />) : (<Redirect to='/login' />)}
                 </Route>
                 <Route path='/forum/create-post'>
                     {loggedIn ? (<CreatePostPage />) : (<Redirect to='/login' />)}

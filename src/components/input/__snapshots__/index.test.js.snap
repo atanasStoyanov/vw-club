@@ -16,6 +16,7 @@ exports[`Input Component should render input field with label=Test 1`] = `
     id="Test"
     onChange="Test"
     placeholder="Test"
+    readOnly=""
     type="text"
     value="Test"
   />

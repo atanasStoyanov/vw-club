@@ -10,10 +10,6 @@ const getNavigation = (loggedIn, user) => {
             link: '/forum'
         },
         {
-            title: 'Events',
-            link: '/events'
-        },
-        {
             title: 'Profile',
             link: `/profile/${user && user.id}`
         },
