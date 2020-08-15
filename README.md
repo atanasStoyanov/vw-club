@@ -21,25 +21,10 @@ These instructions will get you a copy of the project up and running on your loc
 npm install
 ```
 
-- Navigate to 'REST API VW-CLub' folder and run the REST API. 
-This will run the express server locally on port 9999.
+- Run the below command to start the Node server and the React app simultaneously
 
 ```
-cd ./REST API VW-Club
-```
-
-```
-npm start
-```
-
-- Navigate back to the vw-club folder and run the web server locally.
-
-```
-cd ../
-```
-
-```
-npm start
+npm run dev
 ```
 
 ```
