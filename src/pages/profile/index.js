@@ -10,7 +10,6 @@ import UserInfo from '../../components/user-profile-info';
 
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
-    const [posts, setPosts] = useState(null);
     const params = useParams();
     const history = useHistory();
 
@@ -24,7 +23,6 @@ const ProfilePage = () => {
         } else {
             const user = await response.json();
             setUser(user);
-            setPosts(user.posts && user.posts.length);
         }
     }, [id, history])
 
