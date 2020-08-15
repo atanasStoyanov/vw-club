@@ -103,7 +103,6 @@ module.exports = {
 
     put: (req, res, next) => {
         const id = req.params.id;
-        console.log(id);
         const { username, carModel, avatar } = req.body;
 
         if (!username.match(/^[a-zA-z0-9]{3,}$/)) {

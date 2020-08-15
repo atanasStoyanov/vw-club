@@ -4,7 +4,7 @@ const { model } = require('mongoose');
 module.exports = {
     get: (req, res, next) => {
         // const length = req.query.length ? parseInt(req.query.length) : 20;
-        models.Publication.find().populate('author')
+        models.Publication.find().sort({ _id: -1 }).populate('author')
             .then((publications) => {
                 res.send(publications)
             })
@@ -59,8 +59,13 @@ module.exports = {
 
     put: (req, res, next) => {
         const id = req.params.id;
-        const { description } = req.body;
-        models.Publication.updateOne({ _id: id }, { description })
+        const { title, carModel, description, image } = req.body;
+
+        if (!title || !carModel || !description) {
+            return res.status(400).send('Invalid data. Title, Car Model and Description are required fields!');
+        }
+
+        models.Publication.updateOne({ _id: id }, { title, carModel, description, image })
             .then((updatedPublication) => res.send(updatedPublication))
             .catch(next)
     },

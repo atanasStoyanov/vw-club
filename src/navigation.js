@@ -14,6 +14,7 @@ import CreatePostPage from './pages/create-post';
 import PostDetailsPage from './pages/details-post';
 import ProfilePage from './pages/profile';
 import UpdateProfilePage from './pages/update-profile';
+import UpdatePostPage from './pages/update-post';
 import ErrorPage from './pages/error';
 
 const Navigation = () => {
@@ -42,6 +43,9 @@ const Navigation = () => {
                 </Route>
                 <Route path='/forum/post/:postId' >
                     {loggedIn ? (<PostDetailsPage />) : (<Redirect to='/login' />)}
+                </Route>
+                <Route path='/forum/update-post/:postId'>
+                    {loggedIn ? (<UpdatePostPage />) : (<Redirect to='/login' />)}
                 </Route>
                 <Route path='/profile/:userId' >
                     {loggedIn ? (<ProfilePage />) : (<Redirect to='/login' />)}

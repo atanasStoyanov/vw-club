@@ -8,6 +8,7 @@ import Title from '../../components/title';
 import Container from '../../components/post-details-container';
 import PostDetailsInfo from '../../components/post-details-info';
 import SubmitButton from '../../components/button/submit-button';
+import LinkButton from '../../components/button/link-button';
 import ComponentErrorBoundery from '../../components/component-erroBoundery';
 import Comments from '../../components/comments';
 import Textarea from '../../components/textarea';
@@ -135,6 +136,7 @@ const PostDetailsPage = () => {
                     {isAuthor ?
                         (<SubmitButton title='Delete Post' onClick={handleDelete} />) :
                         (<SubmitButton title={likeBtnTitle} onClick={handleLike} disabled={isLiked ? true : false} />)}
+                    {isAuthor ? (<LinkButton href={`/forum/update-post/${id}`} title='Update Post' />) : null}
                 </Container>
             </ComponentErrorBoundery>
             <ComponentErrorBoundery>
