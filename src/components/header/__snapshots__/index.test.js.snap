@@ -36,17 +36,6 @@ exports[`Header Component should render authenticated routes 1`] = `
   >
     <a
       className="header-link"
-      href="/events"
-      onClick={[Function]}
-    >
-      Events
-    </a>
-  </div>
-  <div
-    className="header-list-item"
-  >
-    <a
-      className="header-link"
       href="/profile/123"
       onClick={[Function]}
     >

@@ -9,7 +9,6 @@ exports[`Input Component should render input field with label=Test 1`] = `
     htmlFor="Test"
   >
     Test
-    :
   </label>
   <input
     className="input"
