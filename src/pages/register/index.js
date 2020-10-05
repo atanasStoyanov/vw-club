@@ -5,9 +5,12 @@ import Title from '../../components/title';
 import Input from '../../components/input';
 import SubmitButton from '../../components/button/submit-button';
 import ErrorMsg from '../../components/error-msg';
+import InfoSection from '../../components/info-section';
 import authenticate from '../../utils/authenticate';
 import UserContext from '../../Context';
 import { useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 const RegisterPage = () => {
 
@@ -57,9 +60,17 @@ const RegisterPage = () => {
 
     return (
         <PageLayout>
+            <InfoSection
+                title='Welcome VW Passat fan'
+                message="Create your account. It's free and only takes a minute."
+                info=''
+            />
             <div className={styles.container}>
                 <form className={styles.form} onSubmit={handleSubmit}>
-                    <Title title='REGISTER' />
+                    <div className={styles['user-icon']}>
+                        <FontAwesomeIcon icon={faUser} size='6x' />
+                    </div>
+                    <Title title='Create Account' />
                     <Input
                         value={username}
                         onChange={(e) => {
