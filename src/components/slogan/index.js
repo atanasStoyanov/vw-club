@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
-import logo from '../../images/vw-logo-black.png';
+import logo from '../../images/vw-logo.png';
 
 const Slogan = () => {
     return (

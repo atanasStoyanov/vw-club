@@ -7,12 +7,13 @@ const PageLayout = (props) => {
     return (
         <div className={styles.app}>
             <Header />
-            <div className={styles.container}>
-                <div className={styles['inner-container']}>
+            <div className={styles.media}></div>
+            <div className={styles['site-content']}>
+                <div className={styles['inner-container'] + ' ' + styles['site-wrapper']}>
                     {props.children}
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </div>
     )
 }
