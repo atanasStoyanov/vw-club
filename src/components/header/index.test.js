@@ -32,3 +32,7 @@ describe('Header Component', () => {
         expect(tree).toMatchSnapshot();
     });
 })
+
+function test() {
+
+}

@@ -1,15 +1,20 @@
 .slogan {
     text-align: right;
+    display: flex;
+    justify-content: flex-end;
     
 }
 
 .logo {
     width: 40px;
     margin-right: 10px;
-    display: inline-block;
 }
 
 .slogan-element {
-    display: inline-block;
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
+}
+
+.slogan-element h3 {
+    padding: 0;
 }
