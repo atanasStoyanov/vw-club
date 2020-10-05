@@ -1,0 +1,22 @@
+.container {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: -30em ;
+    color: #FFF;
+    border-radius: 1rem;
+    position: absolute;
+    z-index: 10;
+}
+
+.slogan {
+    display: block;
+}
+
+.p {
+    display: block;
+    width: 100%;
+    margin-top: 1em;
+    font-size: large;
+    padding-bottom: 1em;
+}
+

@@ -5,12 +5,15 @@ import Title from '../../components/title';
 import Input from '../../components/input';
 import SubmitButton from '../../components/button/submit-button';
 import ErrorMsg from '../../components/error-msg';
+import InfoSection from '../../components/info-section';
 import authenticate from '../../utils/authenticate';
 import UserContext from '../../Context';
 import { useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 const LoginPage = () => {
-    const [username, setUername] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState(null);
     const context = useContext(UserContext);
@@ -36,13 +39,21 @@ const LoginPage = () => {
 
     return (
         <PageLayout>
+            <InfoSection
+                title='Welcome back'
+                message='Sign in to your account and start exploring the VW Passat Club Web page!'
+                info=''
+            />
             <div className={styles.container}>
                 <form className={styles.form} onSubmit={handleSubmit}>
-                    <Title title='LOGIN' />
+                    <div className={styles['user-icon']}>
+                        <FontAwesomeIcon icon={faUser} size='6x' />
+                    </div>
+                    <Title title='Sign with your account' />
                     <Input
                         value={username}
                         onChange={(e) => {
-                            setUername(e.target.value);
+                            setUsername(e.target.value);
                             setErrorMsg(null);
                         }}
                         label='Username'

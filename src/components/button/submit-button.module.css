@@ -1,19 +1,16 @@
 .submit {
     margin: 0.5em 0.5em;
-    padding: 0.5rem;
+    padding: 0.5em 1em;
     border: none;
-    border-radius: 0.5em;
-    color: black;
+    background-color: rgb(7, 97, 100);
     font-size: 1.2rem;
-    box-sizing: 2px 2px 2px black;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.568);
-
+    color: #FFF;
 }
 
 .submit:hover {
     cursor: pointer;
-    background-color: #383838;
-    font-weight: bold;
+    background-color: rgb(6, 64, 66);
     color: white;
-
+    transition: color 0.2s ease;
 }
