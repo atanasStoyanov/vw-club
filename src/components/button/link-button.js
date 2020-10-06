@@ -4,9 +4,7 @@ import styles from './link-button.module.css';
 
 const LinkButton = ({href, title}) => {
     return (
-        <button className={styles.btn}>
-            <Link to={href} className={styles['btn-link']}>{title}</Link>
-        </button>
+        <Link to={href} className={styles['btn']}>{title}</Link>
     )
 }
 

@@ -1,29 +1,77 @@
-.info {
-    display: block;
-    padding: 1rem;
-    bottom: 0;
-    background-color: white;
-    box-shadow: 2px 2px 1.5em 2px black;
-    text-align: center;
-}
-
-.user {
-    text-decoration: underline;
-    text-align: right;
-    padding-right: 1%;
-}
-
 .card {
-    width: 400px;
-    flex: 0 0 5em;
-    margin: 0.7em;
-    background-color:white;
-    box-shadow: 2px 2px 1.5em 2px black;
-    display: inline-block
+    display: block;
+    width: 32%;
+    /* background-color: #EEE; */
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
 }
 
-.model {
-    text-decoration: underline;
-    margin-top: 10px;
-    margin-bottom: 10px;
+/* Aspect-ratio box */
+
+.card-media {
+    display: block;
+    background-color: #333;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+.card-media:after {
+    display: block;
+    content: '';
+    background-color: #FFF;
+    padding-top: calc((9 / 16) * 100 * 1% );
+}
+
+.card-media .inner {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+}
+.card-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease-in;
+}
+
+.card-media:hover  img {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+
+/* Meta */
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 94%;
+    margin-top: -0.5em;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 10;
+    margin-left: 3%;
+}
+
+.info h3 {
+    font-size: 1.3rem;
+    padding-top: 0.5rem;
+}
+
+.info .model {
+    font-size: 1.2em;
+    margin-top: 0.5rem;
+}
+
+.info .values {
+    width: 100%;
 }
