@@ -1,0 +1,16 @@
+.values-list {
+    display: block;
+    width: 100%;
+    list-style-type: none;
+    text-align: left;
+    padding: 0;
+}
+
+.values-list li:last-child {
+    text-align: right;
+}
+
+.values-list li p {
+    padding: 0.2em;
+    font-size: 1rem;
+}

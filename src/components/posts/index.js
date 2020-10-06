@@ -67,8 +67,10 @@ const Posts = ({ userId, title, noPostsMsg }) => {
     return (
         <ContainerSection>
             <Title title={title} />
-            <LinkButton href='/forum/create-post' title='Create Post' />
-            <Search value={search} onChange={handleSearch} />
+            <div className={styles.actions}>
+                <LinkButton href='/forum/create-post' title='Create Post' />
+                <Search value={search} onChange={handleSearch} />
+            </div>
             <div className={styles['posts-container']}>
                 {search ? renderSearchedPosts() : renderAllPosts()}
             </div>

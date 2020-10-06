@@ -1,13 +1,14 @@
 import React from 'react';
 import SmallParagraph from '../small-paragraph';
+import styles from './index.module.css';
 
 const PostValues = ({ comments, likes, author }) => {
     return (
-        <div>
-            <SmallParagraph label='Comments' value={comments.length} />
-            <SmallParagraph label='Likes' value={likes.length} />
-            <SmallParagraph label='Author' value={author.username} />
-        </div>
+        <ul className={styles['values-list']}>
+            <li><SmallParagraph label='Comments' value={comments.length} /></li>
+            <li><SmallParagraph label='Likes' value={likes.length} /></li>
+            <li><SmallParagraph label='Author' value={author.username} /></li>
+        </ul>
     )
 }
 

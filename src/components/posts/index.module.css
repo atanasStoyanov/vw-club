@@ -1,14 +1,18 @@
-
 .posts-container {
-    display: block;
-    align-items: center;
-    margin-bottom: 2em;
-    background-color: rgba(128, 128, 128, 0.301);
-    flex-basis: auto;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    overflow-x: scroll
-    
+    overflow: hidden;
+    margin-top: 1.5em;
+}
+
+.actions {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em 0;
 }
 
 
-  
