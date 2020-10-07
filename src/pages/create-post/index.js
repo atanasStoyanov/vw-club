@@ -7,9 +7,12 @@ import Input from '../../components/input';
 import Textarea from '../../components/textarea';
 import ErrorMsg from '../../components/error-msg';
 import SubmitButton from '../../components/button/submit-button';
+import InfoSection from '../../components/info-section';
 import getCookie from '../../utils/getCookie';
 import icon from '../../images/passat-icon.svg'
 import uploadImage from '../../utils/uploadImage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCar } from '@fortawesome/free-solid-svg-icons';
 
 const CreatePostPage = () => {
     const [title, setTitle] = useState('');
@@ -69,8 +72,16 @@ const CreatePostPage = () => {
 
     return (
         <PageLayout>
+            <InfoSection
+                title='Share your thoughts'
+                message='Use the form below to create a post to the VW Passat Forum.'
+                info='You can ask a question, look for recommendations and assistance or just share your experience with the favourite car model!'
+            />
             <div className={styles.container}>
                 <form className={styles.form} onSubmit={handleSubmit}>
+                    <div className={styles['car-icon']}>
+                        <FontAwesomeIcon icon={faCar} size='6x' />
+                    </div>
                     <Title title='Create Post' />
                     <Input
                         value={title}
@@ -109,9 +120,11 @@ const CreatePostPage = () => {
                         id='image'
                         placeholder='Upload an image'
                     />
-                    {
-                        loading ? (<h3>Loading...</h3>) : (<div><img src={image ? image : icon} style={{ width: '300px', height: 'auto' }} alt='car' /></div>)
-                    }
+                    <div className={styles['media-container']}>
+                        {
+                            loading ? (<h3>Loading...</h3>) : (<div className={styles.media}><div className={styles.inner}><img src={image ? image : icon} style={{ width: '300px', height: 'auto' }} alt='car' /></div></div>)
+                        }
+                    </div>
                     {errorMsg ? (<ErrorMsg msg={errorMsg} />) : null}
                     <SubmitButton title='Create' />
                 </form>
