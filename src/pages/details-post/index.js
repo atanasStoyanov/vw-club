@@ -13,6 +13,8 @@ import ComponentErrorBoundery from '../../components/component-erroBoundery';
 import Comments from '../../components/comments';
 import Textarea from '../../components/textarea';
 import ErrorMsg from '../../components/error-msg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCommentDots } from '@fortawesome/free-solid-svg-icons'
 
 const PostDetailsPage = () => {
 
@@ -119,9 +121,9 @@ const PostDetailsPage = () => {
     if (!post) {
         return (
             <PageLayout>
-                <section className={styles['loading-details']}>
+                <Container>
                     <div>Loading...</div>
-                </section>
+                </Container>
             </PageLayout>
         )
     }
@@ -133,29 +135,36 @@ const PostDetailsPage = () => {
                 <Container>
                     <Title title={post.title} />
                     <PostDetailsInfo post={post} />
-                    {isAuthor ?
-                        (<SubmitButton title='Delete Post' onClick={handleDelete} />) :
-                        (<SubmitButton title={likeBtnTitle} onClick={handleLike} disabled={isLiked ? true : false} />)}
-                    {isAuthor ? (<LinkButton href={`/forum/update-post/${id}`} title='Update Post' />) : null}
+                    <div className={styles.actions}>
+                        {isAuthor ?
+                            (<SubmitButton title='Delete Post' onClick={handleDelete} />) :
+                            (<SubmitButton title={likeBtnTitle} onClick={handleLike} disabled={isLiked ? true : false} />)}
+                        {isAuthor ? (<LinkButton href={`/forum/update-post/${id}`} title='Update Post' />) : null}
+                    </div>
                 </Container>
             </ComponentErrorBoundery>
             <ComponentErrorBoundery>
                 <Container>
                     <Title title='Comments' />
-                    <form onSubmit={handleComment}>
-                        <Textarea
-                            value={comment}
-                            onChange={(e) => {
-                                setComment(e.target.value);
-                                setErrorMsg('');
-                            }}
-                            label='Add Comment'
-                            id='comment'
-                            placeholder='Share your thoughts here...'
-                        />
-                        {errorMsg ? (<ErrorMsg msg={errorMsg} />) : null}
-                        <SubmitButton title='Comment' />
-                    </form>
+                    <div className={styles['form-container']}>
+                        <div className={styles.icon}>
+                            <FontAwesomeIcon icon={faCommentDots} size='6x' />
+                        </div>
+                        <form className={styles.form} onSubmit={handleComment}>
+                            <Textarea
+                                value={comment}
+                                onChange={(e) => {
+                                    setComment(e.target.value);
+                                    setErrorMsg('');
+                                }}
+                                label='Add Comment'
+                                id='comment'
+                                placeholder='Share your thoughts here...'
+                            />
+                            {errorMsg ? (<ErrorMsg msg={errorMsg} />) : null}
+                            <SubmitButton title='Comment' />
+                        </form>
+                    </div>
 
                     <Comments post={post} />
                 </Container>
