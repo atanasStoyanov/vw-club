@@ -6,10 +6,14 @@ import Title from '../../components/title';
 import Input from '../../components/input';
 import ErrorMsg from '../../components/error-msg';
 import SubmitButton from '../../components/button/submit-button';
-import icon from '../../images/passat-icon.svg';
 import Textarea from '../../components/textarea';
+import InfoSection from '../../components/info-section';
+import icon from '../../images/passat-icon.svg';
 import uploadImage from '../../utils/uploadImage';
 import getCookie from '../../utils/getCookie';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCarCrash } from '@fortawesome/free-solid-svg-icons';
+
 
 const UpdatePostPage = () => {
     const [title, setTitle] = useState('');
@@ -23,7 +27,7 @@ const UpdatePostPage = () => {
     const params = useParams();
 
     const id = params.postId;
-    
+
     const getPost = useCallback(async () => {
         const response = await fetch(`http://localhost:9999/api/publication/details?id=${id}`);
 
@@ -89,8 +93,16 @@ const UpdatePostPage = () => {
 
     return (
         <PageLayout>
-            <section className={styles.details}>
+            <InfoSection
+                title={`Updating post... "${title}"`}
+                message='Use the form below to update your post.'
+                info=''
+            />
+            <section className={styles.container}>
                 <form className={styles.form} onSubmit={handleSubmit}>
+                    <div className={styles['car-icon']}>
+                        <FontAwesomeIcon icon={faCarCrash} size='6x' />
+                    </div>
                     <Title title='Update Post' />
                     <Input
                         value={title}
@@ -129,9 +141,11 @@ const UpdatePostPage = () => {
                         id='image'
                         placeholder='Upload an image'
                     />
-                    {
-                        loading ? (<h3>Loading...</h3>) : (<div><img src={image ? image : icon} style={{ width: '300px', height: 'auto' }} alt='car' /></div>)
-                    }
+                    <div className={styles['media-container']}>
+                        {
+                            loading ? (<h3>Loading...</h3>) : (<div className={styles.media}><div className={styles.inner}><img src={image ? image : icon}  alt='car' /></div></div>)
+                        }
+                    </div>
                     {errorMsg ? (<ErrorMsg msg={errorMsg} />) : null}
                     <SubmitButton title='Update' />
                 </form>
