@@ -6,15 +6,17 @@ import icon from '../../images/passat-icon.svg'
 const PostDetailsInfo = ({ post }) => {
 
     return (
-        <div>
-            <div>
-                <img src={post.image || icon } alt='car' className={styles.image} />
+        <div className={styles['details-container']}>
+            <div className={styles.media}>
+                <div className={styles.inner}>
+                    <img src={post.image || icon} alt='car' />
+                </div>
             </div>
             <div className={styles.info}>
-                <h4 className={styles.model}><small>Car model:</small> {post.carModel}</h4>
+                <p className={styles.model}><small>Car model:</small> {post.carModel}</p>
                 <h3>Post Description</h3>
                 <p>{post.description}</p>
-                <PostValues comments={post.comments} likes={post.likes} author={post.author}/>
+                <PostValues comments={post.comments} likes={post.likes} author={post.author} />
             </div>
         </div>
     )

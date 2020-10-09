@@ -1,9 +1,26 @@
 .container {
-    width: 60em;
-    margin: 3em auto;
-    background-color: rgba(255, 255, 255, 0.904);
-    padding: 1em;
-    border-radius: 1rem;
-    box-shadow: 2px 10px 1.5em 5px black;
-    text-align: center;
+    position: relative;
+    z-index: 100;
+    background-color: rgb(240, 255, 255);
+    max-width: 75em;
+    margin-top: -30em;
+    padding-bottom: 2em;
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container p {
+    color: #000;
+    padding-bottom: 0.5em;
+    font-size: 2.5em;
+}
+
+.container a {
+    width: 8em;
+}
+
+.container + .container {
+    margin-top: 1em;
 }
