@@ -8,6 +8,8 @@ import profileIcon from '../../images/profile-icon.png';
 import { useHistory, useParams } from 'react-router-dom';
 import SubmitButton from '../../components/button/submit-button';
 import uploadImage from '../../utils/uploadImage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons';
 
 
 const UpdateProfilePage = () => {
@@ -51,7 +53,7 @@ const UpdateProfilePage = () => {
             return;
         }
 
-        await fetch(`http://localhost:9999/api/user/${id}`,{
+        await fetch(`http://localhost:9999/api/user/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 username,
@@ -59,7 +61,7 @@ const UpdateProfilePage = () => {
                 avatar
             }),
             headers: {
-                'Content-Type' : 'application/json',
+                'Content-Type': 'application/json',
             }
         }).then(res => {
 
@@ -76,9 +78,12 @@ const UpdateProfilePage = () => {
 
     return (
         <PageLayout>
-            <section className={styles.details}>
-                <Title title='Update User info' />
+            <section className={styles.container}>
                 <form className={styles.form} onSubmit={handleSubmit}>
+                    <div className={styles['user-icon']}>
+                        <FontAwesomeIcon icon={faUserEdit} size='5x' />
+                    </div>
+                    <Title title='Update User details' />
                     <Input
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
@@ -98,10 +103,13 @@ const UpdateProfilePage = () => {
                         id='avatar'
                         placeholder='Upload an image'
                     />
+                    <div className={styles['media-container']}>
+
                     {
-                        loading ? (<h3>Loading...</h3>) : (<div><img src={avatar ? avatar : profileIcon} style={{ width: '300px', height: 'auto' }} alt='profile pic' /></div>)
+                        loading ? (<h3>Loading...</h3>) : (<div className={styles.media}><div className={styles.inner}><img src={avatar ? avatar : profileIcon} alt='profile pic' /></div></div>)
                     }
                     {errorMsg ? (<ErrorMsg msg={errorMsg} />) : null}
+                    </div>
                     <SubmitButton title='Update' />
                 </form>
             </section>
