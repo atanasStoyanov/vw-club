@@ -22,16 +22,22 @@ const UserInfo = ({ user }) => {
 
     return (
         <section className={styles.details}>
-            <Title title='My profile' />
-            <div>
-                <img src={user.avatar || profileIcon} alt='car' className={styles.image} />
+            <div className={styles['media-container']}>
+                <div className={styles.media}>
+                    <div className={styles.inner}>
+                        <img src={user.avatar || profileIcon} alt='car' className={styles.image} />
+                    </div>
+                </div>
             </div>
+
             <div className={styles.info}>
-                <h3>Username: {user.username}</h3>
-                <h4 className={styles.model}><small>Car model:</small> {user.carModel || 'No info..'}</h4>
-                <h4 className={styles.model}><small>Posts:</small> {user.posts.length}</h4>
+                <h4>Username: {user.username}</h4>
+                <p className={styles.meta}><small>Car model:</small> {user.carModel || 'No info..'}</p>
+                <p className={styles.meta}><small>Posts:</small> {user.posts.length}</p>
+                <div className={styles['button-container']}>
+                    <LinkButton href={`/update-profile/${user._id}`} title='Update Profile' />
+                </div>
             </div>
-            <LinkButton href={`/update-profile/${user._id}`} title='Update Profile' />
         </section>
     )
 }
