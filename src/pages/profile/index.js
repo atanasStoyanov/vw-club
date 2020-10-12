@@ -6,6 +6,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import Posts from '../../components/posts';
 import ComponentErrorBoundery from '../../components/component-erroBoundery';
 import UserInfo from '../../components/user-profile-info';
+import Container from '../../components/post-details-container';
 
 
 const ProfilePage = () => {
@@ -44,10 +45,14 @@ const ProfilePage = () => {
     return (
         <PageLayout>
             <ComponentErrorBoundery>
-                <UserInfo user={user} />
+                <Container>
+                    <UserInfo user={user} />
+                </Container>
             </ComponentErrorBoundery>
             <ComponentErrorBoundery>
-                <Posts userId={user._id} title='My Posts' noPostsMsg="You don't have any posts yet" />
+                <div className={styles.posts}>
+                    <Posts userId={user._id} title='My Posts' noPostsMsg="You don't have any posts yet" />
+                </div>
             </ComponentErrorBoundery>
         </PageLayout>
     )
