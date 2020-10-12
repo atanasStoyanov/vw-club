@@ -110,7 +110,7 @@ const UpdateProfilePage = () => {
                     }
                     {errorMsg ? (<ErrorMsg msg={errorMsg} />) : null}
                     </div>
-                    <SubmitButton title='Update' />
+                    <SubmitButton title='Update' icon={faUserEdit}/>
                 </form>
             </section>
         </PageLayout>
