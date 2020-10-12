@@ -21,6 +21,13 @@ These instructions will get you a copy of the project up and running on your loc
 npm install
 ```
 
+- Install REST API dependencies 
+
+```
+cd REST API VW-Club
+npm install
+```
+
 - Run the below command to start the Node server and the React app simultaneously
 
 ```
