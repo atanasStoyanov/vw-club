@@ -13,8 +13,13 @@ import ComponentErrorBoundery from '../../components/component-erroBoundery';
 import Comments from '../../components/comments';
 import Textarea from '../../components/textarea';
 import ErrorMsg from '../../components/error-msg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCommentDots } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
+
 
 const PostDetailsPage = () => {
 
@@ -31,8 +36,6 @@ const PostDetailsPage = () => {
 
     const idString = params.postId;
     const id = idString.replace(':', '');
-
-    const likeBtnTitle = isLiked ? 'Already Liked' : 'Like Post';
 
     const getPost = useCallback(async () => {
         const response = await fetch(`http://localhost:9999/api/publication/details?id=${id}`);
@@ -137,9 +140,9 @@ const PostDetailsPage = () => {
                     <PostDetailsInfo post={post} />
                     <div className={styles.actions}>
                         {isAuthor ?
-                            (<SubmitButton title='Delete Post' onClick={handleDelete} />) :
-                            (<SubmitButton title={likeBtnTitle} onClick={handleLike} disabled={isLiked ? true : false} />)}
-                        {isAuthor ? (<LinkButton href={`/forum/update-post/${id}`} title='Update Post' />) : null}
+                            (<SubmitButton title='Delete Post' onClick={handleDelete} icon={faTrashAlt} />) :
+                            (<SubmitButton title={'Like'} onClick={handleLike} icon={faThumbsUp} disabled={isLiked ? true : false} />)}
+                        {isAuthor ? (<LinkButton href={`/forum/update-post/${id}`} icon={faEdit} title='Update' />) : null}
                     </div>
                 </Container>
             </ComponentErrorBoundery>
@@ -162,7 +165,7 @@ const PostDetailsPage = () => {
                                 placeholder='Share your thoughts here...'
                             />
                             {errorMsg ? (<ErrorMsg msg={errorMsg} />) : null}
-                            <SubmitButton title='Comment' />
+                            <SubmitButton title='Comment' icon={faComment}/>
                         </form>
                     </div>
 

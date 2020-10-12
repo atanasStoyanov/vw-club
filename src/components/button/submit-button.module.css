@@ -14,3 +14,9 @@
     color: white;
     transition: color 0.2s ease;
 }
+
+.submit:disabled {
+    background-color: #FFF;
+    color:   rgb(7, 97, 100);
+    cursor: unset;
+}

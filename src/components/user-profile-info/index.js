@@ -4,7 +4,7 @@ import Title from '../../components/title';
 import profileIcon from '../../images/profile-icon.png';
 import LinkButton from '../../components/button/link-button';
 import PageLayout from '../../components/page-layout';
-
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons';
 
 
 const UserInfo = ({ user }) => {
@@ -35,7 +35,7 @@ const UserInfo = ({ user }) => {
                 <p className={styles.meta}><small>Car model:</small> {user.carModel || 'No info..'}</p>
                 <p className={styles.meta}><small>Posts:</small> {user.posts.length}</p>
                 <div className={styles['button-container']}>
-                    <LinkButton href={`/update-profile/${user._id}`} title='Update Profile' />
+                    <LinkButton href={`/update-profile/${user._id}`} title='Update Profile' icon={faUserEdit} />
                 </div>
             </div>
         </section>
