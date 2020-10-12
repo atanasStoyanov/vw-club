@@ -1,9 +1,99 @@
-.details {
-    width: 60em;
-    margin: 3em auto;
-    background-color: rgba(255, 255, 255, 0.904);
-    padding: 1em;
-    border-radius: 1rem;
-    box-shadow: 2px 10px 1.5em 5px black;
-    text-align: center;
+.container{
+    position: relative;
+    z-index: 100;
+    background-color: rgb(240, 255, 255);
+    max-width: 75em;
+    margin-top: -30em;
+    padding-top: 4em;
+    padding-bottom: 2em;
+    margin-bottom: 2em;
+}
+
+.form {
+    width: 60%;
+    background-color: rgb(255, 255, 255);
+    margin: 2em auto;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1em;
+}
+
+.form p {
+    color: #999;
+    max-width: 100%;
+    font-size: 1.5em;
+    padding-bottom: 1em;
+}
+
+.form label {
+    color: #999;
+}
+
+.form input {
+    color: #999;
+    border-bottom: 2px solid #999;
+}
+
+.form textarea {
+    color: #999;
+    border-bottom: 2px solid #999;
+}
+
+.form button {
+    width: 80%;
+}
+
+/* Aspect-ration box */
+
+.media {
+    display: block;
+    background-color: #333;
+    overflow: hidden;
+    position: relative;
+}
+
+.media:after {
+    display: block;
+    content: '';
+    background-color: #FFF;
+    padding-top: calc((9 / 16) * 100 * 1% );
+}
+
+.media .inner {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.media img {
+    display: block;
+    width: 50%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease-in;
+}
+
+.media-container {
+    display: block;
+    width: 80%;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10em;
+    height: 10em;
+    background-color: rgb(0, 151, 151);
+    color: #FFF;
+    border-radius: 50%;
+    margin-top: -5em;
 }
