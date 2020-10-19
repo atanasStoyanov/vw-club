@@ -28,9 +28,10 @@ cd REST API VW-Club
 npm install
 ```
 
-- Run the below command to start the Node server and the React app simultaneously
+- Navigate back to the root folder "vw-club" and run the below command to start the Node server and the React app simultaneously
 
 ```
+cd ../
 npm run dev
 ```
 
