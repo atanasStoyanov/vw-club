@@ -59,7 +59,7 @@ const PostDetailsPage = () => {
 
     useEffect(() => {
         getPost();
-    }, [getPost, newComment])
+    }, [getPost, newComment, isLiked])
 
     const handleLike = async () => {
         const response = await fetch(`http://localhost:9999/api/publication/like-post?id=${id}`, {
